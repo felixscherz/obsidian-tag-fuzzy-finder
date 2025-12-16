@@ -82,32 +82,6 @@ When you select a tag, the Obsidian search pane opens with a search expression m
 
 This will show all notes that have been tagged with the selected tag.
 
-## Examples
-
-### Finding Tags with Hierarchies
-
-If your vault contains tags like:
-- `area/finances`
-- `area/travel`
-- `area/learning`
-
-You can find them by typing:
-- `travel` → matches `area/travel`
-- `area` → matches all three area tags
-- `fin` → matches `area/finances`
-- `trav` → matches `area/travel`
-
-### Mixed Case Queries
-
-The search is case-insensitive, so:
-- `TRAVEL`, `Travel`, `travel` all match `area/travel`
-
-### Partial Matches
-
-The fuzzy matching allows gaps in your search:
-- `arfn` → matches `area/finances`
-- `atv` → matches `area/travel`
-
 ## Architecture
 
 The plugin consists of several key components:
@@ -166,36 +140,6 @@ Generate coverage report:
 npm run test:coverage
 ```
 
-## Testing Details
-
-The plugin includes 34 comprehensive unit tests for the fuzzy matching algorithm covering:
-
-- **Basic Matching**: Exact matches, partial matches, case-insensitive matching
-- **Multiple Tag Matching**: Multiple results, ranking, hierarchical tags
-- **Scoring Logic**: Match position, word boundaries, consecutive matches, frequency boost
-- **Result Ordering**: Score-based sorting, result limiting
-- **Edge Cases**: Single character queries, long queries, special characters, empty inputs
-- **Score Consistency**: Deterministic scoring across searches
-
-All tests pass with high coverage of the fuzzy matching logic.
-
-## How Fuzzy Matching Works
-
-The fuzzy matcher uses a sophisticated scoring algorithm:
-
-1. **Character Matching**: All characters from your query must exist in the tag in the same order (but not necessarily consecutive)
-2. **Scoring Factors**:
-   - **Exact Match** (1000+ points): Complete match with the tag
-   - **Match Position** (-2 points per character before first match): Earlier matches score higher
-   - **Consecutive Matches** (+50 points per consecutive character): Consecutive matching characters score higher
-   - **Word Boundary Bonus** (+150 points): Matches after `/`, `-`, `_`, or space bonus
-   - **Start Position Bonus** (+200 points): Matching at the very beginning
-   - **Gap Penalty** (-5 points per gap): Gaps between matches reduce score
-   - **Length Bonus** (up to +100 points): Shorter tags score slightly higher
-   - **Frequency Multiplier** (1.0 to 2.0x): Frequently used tags score up to 2x higher
-
-3. **Result Ranking**: Results are sorted by final score (highest first) and limited to top 50 results
-
 ## Performance
 
 - **Tag Collection**: Scans entire vault once and caches results
@@ -208,47 +152,3 @@ The fuzzy matcher uses a sophisticated scoring algorithm:
 - **Obsidian Desktop Only**: The plugin currently works on Obsidian Desktop
 - **Performance**: With very large vaults (10,000+ unique tags), there may be slight delays in tag collection
 - **Search Integration**: Relies on Obsidian's native tag search syntax (`tag:#tagname`)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit issues and pull requests on GitHub.
-
-## License
-
-MIT
-
-## Troubleshooting
-
-### No tags are showing up
-
-1. Check that your vault actually has tags in it
-2. Tags can be in:
-   - YAML frontmatter: `tags: [tag1, tag2]` or `tags: tag1, tag2`
-   - Inline tags in content: `#tag-name`
-3. Try refreshing Obsidian or reopening the plugin
-
-### Search isn't opening after selecting a tag
-
-- Ensure you have the search core plugin enabled in Obsidian
-- Try manually opening the search pane (Cmd+Shift+F / Ctrl+Shift+F) first, then try the fuzzy finder again
-
-### Performance is slow
-
-- If your vault has thousands of tags, the initial collection may take a moment
-- Subsequent searches use cached results and should be fast
-- Try closing and reopening the modal if performance seems degraded
-
-## Roadmap
-
-Potential future enhancements:
-
-- Hierarchical tag visualization and filtering
-- Tag frequency statistics
-- Multiple tag selection and combined searches
-- Tag sorting options
-- Custom tag display formatting
-- Tag creation from the modal
-
-## Support
-
-For issues, questions, or feature requests, please open an issue on the GitHub repository.
