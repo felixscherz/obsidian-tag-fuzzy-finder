@@ -146,9 +146,3 @@ npm run test:coverage
 - **Cache Invalidation**: Automatically updates when files are created, deleted, or modified
 - **Debouncing**: Cache updates are debounced to avoid excessive re-collection
 - **Fuzzy Matching**: Efficiently scores and ranks results in real-time
-
-## Limitations
-
-- **Obsidian Desktop Only**: The plugin currently works on Obsidian Desktop
-- **Performance**: With very large vaults (10,000+ unique tags), there may be slight delays in tag collection
-- **Search Integration**: Relies on Obsidian's native tag search syntax (`tag:#tagname`)
