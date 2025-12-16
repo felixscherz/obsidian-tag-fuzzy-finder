@@ -17,93 +17,47 @@ A powerful Obsidian plugin that enables fuzzy searching through tags in your vau
 
 ## Installation
 
-For detailed step-by-step instructions with screenshots-friendly guidance, see **[INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md)** for a quick-start guide.
+To install the plugin, you need two files: `main.js` and `manifest.json`.
 
-### Quick Overview
+1. **Get the files**:
+   - Download `main.js` and `manifest.json` from the latest release (or build them from source)
 
-#### Option 1: Using Pre-built Plugin
+2. **Create the plugin directory**:
+   - Open your vault folder
+   - Navigate to `.obsidian/plugins/` (create the `plugins` folder if needed)
+   - Create a new folder named `obsidian-tag-fuzzy-finder`
 
-1. **Download the plugin files**:
-   - Download `main.js` from the latest release
-   - Download `manifest.json` from the repository
+3. **Add the plugin files**:
+   - Copy `main.js` and `manifest.json` into the `obsidian-tag-fuzzy-finder` folder
+   - Your final structure should be:
+      ```
+      your-vault/
+      └── .obsidian/
+          └── plugins/
+              └── obsidian-tag-fuzzy-finder/
+                  ├── main.js
+                  └── manifest.json
+      ```
 
-2. **Locate your Obsidian vault's plugin directory**:
-   - Open your vault folder in your file explorer
-   - Navigate to `.obsidian/plugins/`
-   - If the `plugins` folder doesn't exist, create it
-
-3. **Create the plugin folder**:
-   - Create a new folder named `obsidian-tag-fuzzy-finder` inside `.obsidian/plugins/`
-   - Your path should now be: `.obsidian/plugins/obsidian-tag-fuzzy-finder/`
-
-4. **Add the plugin files**:
-   - Copy `main.js` into `.obsidian/plugins/obsidian-tag-fuzzy-finder/`
-   - Copy `manifest.json` into `.obsidian/plugins/obsidian-tag-fuzzy-finder/`
-   - Your folder structure should look like:
-     ```
-     your-vault/
-     └── .obsidian/
-         └── plugins/
-             └── obsidian-tag-fuzzy-finder/
-                 ├── main.js
-                 └── manifest.json
-     ```
-
-5. **Enable the plugin in Obsidian**:
-   - Restart Obsidian (or open your vault if it's the first time)
+4. **Enable the plugin**:
+   - Restart Obsidian
    - Go to Settings → Community plugins → Installed plugins
-   - Find "Tag Fuzzy Finder" in the list
-   - Toggle the switch to enable it
-   - You should see a success message
+   - Find "Tag Fuzzy Finder" and toggle it on
 
-#### Option 2: Building from Source (for development)
+### Building from Source
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/obsidian-tag-fuzzy-finder.git
-   cd obsidian-tag-fuzzy-finder
-   ```
+```bash
+git clone https://github.com/yourusername/obsidian-tag-fuzzy-finder.git
+cd obsidian-tag-fuzzy-finder
+npm install
+npm run build
+# Then follow installation steps above
+```
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Build the plugin**:
-   ```bash
-   npm run build
-   ```
-
-4. **Set up the plugin directory**:
-   ```bash
-   mkdir -p /path/to/your/vault/.obsidian/plugins/obsidian-tag-fuzzy-finder
-   cp main.js manifest.json /path/to/your/vault/.obsidian/plugins/obsidian-tag-fuzzy-finder/
-   ```
-
-5. **Enable in Obsidian** (same as Option 1, step 5)
-
-6. **For development with live reload**:
-   ```bash
-   npm run dev
-   ```
-   Then rebuild and reload Obsidian when you make changes.
-
-### From Obsidian Community Plugins (when available)
-
-Once published, you'll be able to search for "Tag Fuzzy Finder" in Obsidian's community plugins browser and install it directly from there.
-
-### Troubleshooting Installation
-
-**Plugin doesn't appear in installed plugins list:**
-- Ensure both `main.js` and `manifest.json` are in the `.obsidian/plugins/obsidian-tag-fuzzy-finder/` directory
-- Make sure the folder name is exactly `obsidian-tag-fuzzy-finder` (case-sensitive on some systems)
-- Restart Obsidian completely
-- Check the Obsidian console (Settings → About → Show debug info) for error messages
-
-**Plugin is disabled/not working after installation:**
-- Check that the plugin is enabled in Settings → Community plugins
-- Try disabling and re-enabling the plugin
-- Check your vault has tags (see Troubleshooting section below)
+For development with live reload:
+```bash
+npm run dev
+```
 
 ## Usage
 
