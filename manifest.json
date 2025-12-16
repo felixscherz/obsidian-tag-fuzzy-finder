@@ -5,7 +5,7 @@
   "minAppVersion": "0.15.0",
   "description": "Fuzzy search through tags in your vault with a quickswitcher-like interface",
   "author": "Felix Scherz",
-  "authorUrl": "https://felixscherz.com",
+  "authorUrl": "https://github.com/felixscherz",
   "isDesktopOnly": false,
   "fundingUrl": ""
 }
