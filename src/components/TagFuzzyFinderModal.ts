@@ -83,21 +83,17 @@ export class TagFuzzyFinderModal extends SuggestModal<string> {
     // Close this modal
     this.close();
 
-    // Use Obsidian's search API
-    // Try to find existing search leaf or create new one
-    let searchLeaf = null;
-    this.app.workspace.iterateLeaves((leaf) => {
-      if (leaf.getViewState().type === 'search') {
-        searchLeaf = leaf;
-      }
-    });
+    // Try to find existing search leaf using proper Obsidian API
+    let searchLeaf = this.app.workspace.getLeavesOfType('search')[0];
 
     if (!searchLeaf) {
-      // Create new search leaf if one doesn't exist
-      searchLeaf = this.app.workspace.getRightLeaf(false);
-      if (!searchLeaf) {
-        searchLeaf = this.app.workspace.getLeaf(true);
+      // Create new search leaf in left sidebar if one doesn't exist
+      const leftLeaf = this.app.workspace.getLeftLeaf(false);
+      if (!leftLeaf) {
+        new Notice('Error: Could not create search pane');
+        return;
       }
+      searchLeaf = leftLeaf;
       searchLeaf.setViewState({
         type: 'search',
       });
